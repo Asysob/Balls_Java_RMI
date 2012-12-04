@@ -22,7 +22,8 @@ public class Player extends UnicastRemoteObject implements IF_Meet, IF_Play {
 		if (n_peers == 0) {
 			for (IF_Play p : peers)
 				p.yourPeers(peers);
-			throwBall();
+			Ball ball = new Ball();
+			throwBall(ball);
 		}
 	}
 
@@ -32,12 +33,13 @@ public class Player extends UnicastRemoteObject implements IF_Meet, IF_Play {
 		peers = peerList;
 	}
 
-	public void throwBall () throws RemoteException {
-		System.out.println("Got the ball: " + name);
+	public void throwBall ( Ball ball ) throws RemoteException {
+		// System.out.println("Got the ball: " + name);
+		ball.catchMe(name);
 		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {}
-		peers.get((int) (Math.random()*(peers.size()-1))).throwBall();
+		peers.get((int) (Math.random()*(peers.size()-1))).throwBall(ball);
 	}
 
 	private String name;
