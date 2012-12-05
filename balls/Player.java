@@ -39,7 +39,7 @@ public class Player extends UnicastRemoteObject implements IF_Meet, IF_Play {
 		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {}
-		peers.get((int) (Math.random()*(peers.size()-1))).throwBall(ball);
+		peers.get((int) (Math.random()*peers.size())).throwBall(ball);
 	}
 
 	private String name;
